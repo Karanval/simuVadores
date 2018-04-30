@@ -1,0 +1,38 @@
+<header>
+    <ul id="slide-out" class="side-nav fixed custom-scrollbar">
+        <li>
+            <div id="about_header" class="about">
+                <p class="latoconfig">SimuVadores</p>
+            </div>
+        </li>
+        <li>
+            <ul class="collapsible collapsible-accordion">
+                <li><a class="collapsible-header waves-effect arrow-r">Menu<i class="fa fa-angle-down rotate-icon"></i></a>
+                    <div class="collapsible-body">
+                        <ul>
+                            <li><a routerLink="" class="waves-effect animated jello"><i class="fa fa-terminal"></i> Simulation</a></li>
+                            <li><a routerLink="about" class="waves-effect animated jello"><i class="fa fa-file-text"></i> About</a></li>
+                        </ul>
+                    </div>
+                </li>
+            </ul>
+        </li>
+    </ul>
+    <nav class="navbar navbar-fixed-top scrolling-navbar double-nav">
+        <div class="float-xs-left">
+            <a href="#" data-activates="slide-out" class="button-collapse"><i class="fa fa-bars"></i></a>
+        </div>
+    </nav>
+</header>
+<main>
+    <div class="container-fluid">
+        <router-outlet></router-outlet>
+    </div>
+</main>
+<footer class="page-footer center-on-small-only">
+    <div class="footer-copyright">
+        <div class="container-fluid">
+            © 2018 Copyright: <a href="http://www.MDBootstrap.com"> SimuVadores </a>
+        </div>
+    </div>
+</footer>
