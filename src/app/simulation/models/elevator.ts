@@ -4,12 +4,10 @@ export class Elevator {
 
     private capacity: number;
     private passengers: Passenger[];
-    private currentFloor: number;
 
     constructor(capacity: number) {
         this.capacity = capacity;
         this.passengers = new Array();
-        this.currentFloor = 0;
     }
 
     public addPassenger(passenger: Passenger) {
