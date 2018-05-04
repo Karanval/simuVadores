@@ -28,17 +28,21 @@ export class ValuesGenerator {
 
     //returns a number between 1 and floors
     function getFloor(floors: number): number {
-      min = Math.ceil(1);
+      min = Math.ceil(0);
       max = Math.floor(floors+1);
       return Math.floor(Math.random() * (max - min)) + min;
     }
 
-    // n =  how many numbers are required
-    // floors = ammount of floors in the building
-    function getNFloors(n: number, floors: number): number[] {
+    /** n =  how many numbers are required
+    / floors = ammount of floors in the building
+    / floor = current floor
+    */
+    function getNFloors(n: number, floors: number, floor: number): number[] {
       var res = [];
-      for ( var _i = 0; _i < numbers.length; _i++ ) {
-        res.push(getFloor(floors));
+      for ( var _i = 0; _i < n; _i++ ) {
+        var num = getFloor(floors);
+        if(num == floor) { _i = _i - 1; }
+        else { res.push(num); }
       }
       return res;
     }
