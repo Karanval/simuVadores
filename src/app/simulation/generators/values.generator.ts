@@ -38,7 +38,7 @@ export class ValuesGenerator {
     function getNFloors(n: number, floors: number): number[] {
       var res = [];
       for ( var _i = 0; _i < numbers.length; _i++ ) {
-        res[i] = getFloor(floors);
+        res.push(getFloor(floors));
       }
       return res;
     }
