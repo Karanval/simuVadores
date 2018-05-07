@@ -23,6 +23,7 @@ export class SimulationComponent implements OnInit {
   private generator: ValuesGenerator = new ValuesGenerator(4);
   private elevatorSistem: ElevatorSystem = new ElevatorSystem(this.elevator, this.flors);
   private elevatorController: ElevatorController = new ElevatorController(this.elevatorSistem);
+
   private passenger1: Passenger = new Passenger(this.elevatorController, this.generator);
   private passenger2: Passenger = new Passenger(this.elevatorController, this.generator);
   private passenger3: Passenger = new Passenger(this.elevatorController, this.generator);
@@ -30,6 +31,10 @@ export class SimulationComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
+    // for(let i = 0; i < 10; i++) {
+    //   let passenger: Passenger = new Passenger(this.elevatorController, this.generator);
+    //   passenger.run();
+    // }
     this.passenger1.run();
     this.passenger2.run();
     this.passenger3.run();

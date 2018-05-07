@@ -10,6 +10,6 @@ export class ElevatorController {
 
     public callElevator(targetFloor: number) {
         console.log(targetFloor);
-        this.elevatorSystem.moveElevator(targetFloor);
+        this.elevatorSystem.setTargetFloor(targetFloor);
     }
 }
