@@ -19,9 +19,12 @@ export class Floor {
         this.passengers.push(passenger);
     }
 
-    public removePassenger(passenger: Passenger): Passenger {
-        let index = this.passengers.indexOf(passenger);
-        return this.passengers.slice(index, 1)[0];
+    public removePassenger(): Passenger {
+        return this.passengers.splice(0, 1)[0];
+    }
+
+    public getNumberOfPassengersWaiting(): number {
+        return this.passengers.length;
     }
 
     public setElevator(elevator: Elevator) {
@@ -30,7 +33,8 @@ export class Floor {
 
     public removeElevator(): Elevator {
         let current = this.elevator;
-        this.elevator = null;
+        this.elevator = undefined;
         return current;
     }
+    
 }

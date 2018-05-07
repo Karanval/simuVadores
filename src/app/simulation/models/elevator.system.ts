@@ -2,6 +2,7 @@ import { Elevator } from './elevator';
 import { Floor } from './floor';
 import { Passenger } from './passenger';
 import { ValuesGenerator } from '../generators/values.generator';
+import { TraficController } from '../controllers/trafic.controller';
 
 export class ElevatorSystem {
 
@@ -11,9 +12,11 @@ export class ElevatorSystem {
     private targets: Array<number>;
     private currentFloor: number;
     private increment: number;
+    private traficController: TraficController;
 
-    constructor(elevator: Elevator, floors: Array<Floor>) {
+    constructor(elevator: Elevator, floors: Array<Floor>, traficController: TraficController) {
         this.floors = floors;
+        this.traficController = traficController;
         this.currentFloor = 0; //hardcode
         this.increment = this.UP_VALUE;//hardcode
         this.targets = new Array();
@@ -40,12 +43,12 @@ export class ElevatorSystem {
         this.notifyPassengers(elevator, floor);
         if (this.targets.length > 0) {
             this.moveElevator();
-            console.log(this.floors);
         }
     }
 
     public notifyPassengers(elevator: Elevator, floor: Floor) {
         console.log(floor.getFloorNumber() + " => ");
+        this.traficController.passPassengers(elevator, floor)
     }
 
     private isValidFloor(floor: number): boolean {

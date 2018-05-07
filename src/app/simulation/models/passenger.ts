@@ -5,6 +5,7 @@ export class Passenger {
 
     private currentFloor: number;
     private targetFloor: number;
+    private weight: number;
 
     private elevatorController: ElevatorController;
     private generator: ValuesGenerator;
@@ -12,14 +13,25 @@ export class Passenger {
     constructor(elevatorController: ElevatorController, generator: ValuesGenerator) {
         this.elevatorController = elevatorController;
         this.generator = generator;
-        this.currentFloor = generator.getValue();
-        this.targetFloor = generator.getValue();
+        this.currentFloor = generator.getFloor();
+        this.targetFloor = generator.getFloor();
+        this.weight = generator.getWeight();
     }
-
-    public locate(){}
 
     public run() {
         this.elevatorController.callElevator(this.currentFloor);
+    }
+
+    public getCurrentFloor(): number {
+        return this.currentFloor;
+    }
+
+    public getTargetFloor(): number {
+        return this.targetFloor;
+    }
+
+    public getWeight(): number {
+        return this.weight;
     }
 
 }

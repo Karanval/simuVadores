@@ -5,6 +5,9 @@ import { Passenger } from './models/passenger';
 import { ElevatorSystem } from './models/elevator.system';
 import { Elevator } from './models/elevator';
 import { Floor } from './models/floor';
+import { TraficController } from './controllers/trafic.controller';
+import { ResultController } from './controllers/result.controller';
+import { SimulationEngine } from './simulation-engine/simulation.engine';
 
 @Component({
   selector: 'app-simulation',
@@ -13,31 +16,15 @@ import { Floor } from './models/floor';
 })
 export class SimulationComponent implements OnInit {
 
-  private floor0: Floor = new Floor(0);
-  private floor1: Floor = new Floor(1);
-  private floor2: Floor = new Floor(2);
-  private floor3: Floor = new Floor(3);
-  private floor4: Floor = new Floor(4);
-  private flors: Array<Floor> = [this.floor0, this.floor1, this.floor2, this.floor3, this.floor4];
-  private elevator: Elevator = new Elevator(10);
-  private generator: ValuesGenerator = new ValuesGenerator(4);
-  private elevatorSistem: ElevatorSystem = new ElevatorSystem(this.elevator, this.flors);
-  private elevatorController: ElevatorController = new ElevatorController(this.elevatorSistem);
-
-  private passenger1: Passenger = new Passenger(this.elevatorController, this.generator);
-  private passenger2: Passenger = new Passenger(this.elevatorController, this.generator);
-  private passenger3: Passenger = new Passenger(this.elevatorController, this.generator);
+  private simulationEngine: SimulationEngine;
 
   constructor() { }
 
   ngOnInit() {
-    // for(let i = 0; i < 10; i++) {
-    //   let passenger: Passenger = new Passenger(this.elevatorController, this.generator);
-    //   passenger.run();
-    // }
-    this.passenger1.run();
-    this.passenger2.run();
-    this.passenger3.run();
+    this.simulationEngine = new SimulationEngine();
+    this.simulationEngine.start();
+    this.simulationEngine.run();
+    this.simulationEngine.shutDown();
   }
 
 }
