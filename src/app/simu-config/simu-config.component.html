@@ -1,13 +1,14 @@
 <form>
-  Structure configuration:<br>
-  <!--cambiar por el nombre que corresponde-->
-  {{structure}}
-  Patterns configuration:<br>
-  <!--cambiar por el nombre que corresponde-->
-  {{patterns}}
-  <div>
-    <!--falta repetir de acuerdo al numero de veces mencionado en las anteriores config-->
-    {{elevator}}
-  </div>
+  <label>Structure configuration:</label><br>
+    <!--cambiar por el nombre que corresponde-->
+    <app-structure></app-structure>
+  <label>Patterns configuration:</label><br>
+    <!--cambiar por el nombre que corresponde-->
+    <app-patterns></app-patterns>
+  <label>Elevators configuration:</label><br>
+    <div>
+      <!--falta repetir de acuerdo al numero de veces mencionado en las anteriores config-->
+      <app-elevator></app-elevator>
+    </div>
   <input type="submit" value="Start">
 </form>

@@ -2,11 +2,18 @@
 <div>
   <input type="radio" ng-model="behaviour" value="taxi"> Taxi<br>
   <input type="radio" ng-model="behaviour" value="bus"> Bus<br>
-
-  <input type="radio" ng-model="behaviour2" value="sections" ng-init="sect"> Sections<br>
-  <div ng-if="sect">
-    First floor of section: <input type="text" name="sectStart"><br>
-    Last floor of section: <input type="text" name="sectEnd"><br>
-  </div>
-  <input type="radio" ng-model="behaviour2" value="pairs-impairs"> Pairs/Impairs<br>
+</div>
+<div>
+  <input type="radio" ng-model="behaviour2" value="sections" ng-init="sect">
+         Sections<br>
+    <div ng-if="sect">
+      First floor of section: <input type="text" ng-name="sectStart">
+      Last floor of section: <input type="text" ng-name="sectEnd">
+    </div>
+  <input type="radio" ng-model="behaviour2" value="pairs-impairs"
+         ng-init="pairImp"> Pairs/Impairs<br>
+    <div ng-if="pairs-impairs">
+      <input type="radio" ng-model="pairImp" value="pair">Pairs<br>
+      <input type="radio" ng-model="pairImp" value="impair">Impairs<br>
+    </div>
 </div>
