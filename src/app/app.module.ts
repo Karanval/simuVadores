@@ -7,6 +7,7 @@ import { LayoutComponent } from './layout/layout.component';
 import { RoutingModule } from './routes/routing.module';
 import { AboutComponent } from './about/about.component';
 import { SimulationComponent } from './simulation/simulation.component';
+import { BuildingConfigurationComponent } from './simulation/building-configuration/building-configuration.component';
 
 
 @NgModule({
@@ -14,7 +15,8 @@ import { SimulationComponent } from './simulation/simulation.component';
     AppComponent,
     LayoutComponent,
     AboutComponent,
-    SimulationComponent
+    SimulationComponent,
+    BuildingConfigurationComponent
   ],
   imports: [
     BrowserModule,
