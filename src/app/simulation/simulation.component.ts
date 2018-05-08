@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { ResultController } from './controllers/result.controller';
+import { SimulationEngine } from './simulation-engine/simulation.engine';
 
 @Component({
   selector: 'app-simulation',
@@ -7,9 +9,18 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SimulationComponent implements OnInit {
 
-  constructor() { }
+  private simulationEngine: SimulationEngine;
+  private resultController: ResultController;
+
+  constructor() {
+    this.resultController = new ResultController();
+    this.simulationEngine = new SimulationEngine(this.resultController);
+  }
 
   ngOnInit() {
+    this.simulationEngine.start();
+    this.simulationEngine.run();
+    this.simulationEngine.shutDown();
   }
 
 }

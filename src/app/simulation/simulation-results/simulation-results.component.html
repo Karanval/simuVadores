@@ -1,0 +1,18 @@
+<table class="table">
+  <thead class="thead-inverse">
+    <tr>
+      <th>#</th>
+      <th>Origin Floor</th>
+      <th>Target Floor</th>
+      <th>Passenger Weight</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let passenger of transportedPassengers; let i = index" [attr.data-index]="i">
+      <td>{{i + 1}}</td>
+      <td>{{passenger.getCurrentFloor()}}</td>
+      <td>{{passenger.getTargetFloor()}}</td>
+      <td>{{passenger.getWeight()}}</td>
+    </tr>
+  </tbody>
+</table>
