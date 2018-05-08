@@ -26,6 +26,10 @@ export class SimulationEngine {
 
     private passengers: Array<Passenger>;
 
+    constructor(resultController: ResultController) {
+        this.resultController = resultController;
+    }
+
     public start() {
         this.floor0 = new Floor(0);
         this.floor1 = new Floor(1);
@@ -35,7 +39,6 @@ export class SimulationEngine {
 
         this.floors = [this.floor0, this.floor1, this.floor2, this.floor3, this.floor4];
 
-        this.resultController = new ResultController();
         this.traficController = new TraficController(this.resultController);
         this.elevator = new Elevator(630);
         this.generator = new ValuesGenerator(4);
@@ -43,7 +46,7 @@ export class SimulationEngine {
         this.elevatorController = new ElevatorController(this.elevatorSistem);
 
         this.passengers = new Array();
-        let population = 3;
+        let population = 15;
         for (let i = 0; i < population; i++) {
             let passenger: Passenger = new Passenger(this.elevatorController, this.generator);
             let passengerIndex = passenger.getCurrentFloor();
