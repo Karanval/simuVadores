@@ -1,41 +1,34 @@
 import { ElevatorController } from '../controllers/elevator.controller';
-import { ValuesGenerator } from '../generators/values.generator';
+import { DatosPasajero } from '../generators/values.datos-pasajero';
 
 export class Passenger {
 
-    private currentFloor: number;
-    private targetFloor: number;
-    private weight: number;
-
     private elevatorController: ElevatorController;
-    private generator: ValuesGenerator;
+    private datos: DatosPasajero;
 
-    constructor(elevatorController: ElevatorController, generator: ValuesGenerator) {
+    constructor(elevatorController: ElevatorController, datos: DatosPasajero) {
         this.elevatorController = elevatorController;
-        this.generator = generator;
-        this.currentFloor = generator.getFloor();
-        this.targetFloor = generator.getFloor();
-        this.weight = generator.getWeight();
+        this.datos = datos;
     }
 
     public run() {
-        this.elevatorController.callElevator(this.currentFloor);
+        this.elevatorController.callElevator(this.getCurrentFloor());
     }
 
     public runTarget() {
-        this.elevatorController.callElevator(this.targetFloor);
+        this.elevatorController.callElevator(this.getTargetFloor());
     }
 
     public getCurrentFloor(): number {
-        return this.currentFloor;
+        return this.datos.getPisoOrigen();
     }
 
     public getTargetFloor(): number {
-        return this.targetFloor;
+        return this.datos.getPisoDestino();
     }
 
     public getWeight(): number {
-        return this.weight;
+        return this.datos.getPeso();
     }
 
 }
