@@ -22,6 +22,10 @@ export class Passenger {
         this.elevatorController.callElevator(this.currentFloor);
     }
 
+    public runTarget() {
+        this.elevatorController.callElevator(this.targetFloor);
+    }
+
     public getCurrentFloor(): number {
         return this.currentFloor;
     }

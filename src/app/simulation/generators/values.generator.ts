@@ -37,6 +37,8 @@ export class ValuesGenerator {
 
     public getWeight(): number {
         //return this.weights[this.index++];
+        //console.log(this);
+        //this.calculateWeights(5);
         return 67.9;
     }
 
