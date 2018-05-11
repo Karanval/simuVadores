@@ -7,6 +7,7 @@ import { LayoutComponent } from './layout/layout.component';
 import { RoutingModule } from './routes/routing.module';
 import { AboutComponent } from './about/about.component';
 import { SimulationComponent } from './simulation/simulation.component';
+import { FormsModule } from '@angular/forms';
 
 import { ElevatorComponent } from './simulation/elevator/elevator.component';
 import { SimuConfigComponent } from './simulation/simu-config/simu-config.component';
@@ -30,7 +31,8 @@ import { SimulationResultsComponent } from './simulation/simulation-results/simu
   ],
   imports: [
     BrowserModule,
-    RoutingModule
+    RoutingModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
