@@ -1,21 +1,33 @@
 
 <div class="behaviour-group">
-  <input name="group100" type="radio" id="radio101" ng-model="behaviour" value="taxi">
-    <label for="radio100">Taxi</label><br>
-  <input name="group100" type="radio" id="radio102" ng-model="behaviour" value="taxi">
-    <label for="radio100">Bus</label>
-</div>
+  <input name="behaviour101" type="radio" id="radio101" ng-model="behaviour" value="taxi">
+    <label for="radio101">Taxi</label><br>
+  <input name="behaviour101" type="radio" id="radio102" ng-model="behaviour" value="taxi">
+    <label for="radio102">Bus</label>
+</div><br>
 <div>
-  <input type="radio" ng-model="behaviour2" value="sections" ng-init="sect">
-         Sections<br>
+  <input name="behaviour102" type="radio" id="radio103" ng-model="behaviour2"
+         value="secciones" ng-init="sect">
+    <label for="radio103">Secciones</label><br>
+  <!--input type="radio" ng-model="behaviour2" value="sections" ng-init="sect">
+         Sections<br-->
     <div ng-if="sect">
       First floor of section: <input type="text" ng-name="sectStart">
       Last floor of section: <input type="text" ng-name="sectEnd">
     </div>
-  <input type="radio" ng-model="behaviour2" value="pairs-impairs"
-         ng-init="pairImp"> Pairs/Impairs<br>
-    <div ng-if="pairs-impairs">
-      <input type="radio" ng-model="pairImp" value="pair">Pairs<br>
-      <input type="radio" ng-model="pairImp" value="impair">Impairs<br>
+  <input name="behaviour102" type="radio" id="radio104" ng-model="behaviour2"
+         value="pairs-impairs" ng-init="pairImp">
+    <label for="radio104">Pairs/Impairs</label>
+  <!--input type="radio" ng-model="behaviour2" value="pairs-impairs"
+         ng-init="pairImp"> Pairs/Impairs<br-->
+    <div ng-if="pairImp">
+      <input name="pairs101" type="radio" id="radio105" ng-model="pair"
+             value="pair">
+        <label for="radio105">Pairs</label>
+      <!--input type="radio" ng-model="pairImp" value="pair">Pairs<br-->
+      <input name="pairs101" type="radio" id="radio106" ng-model="pair"
+             value="impair">
+        <label for="radio106">Impairs</label>
+      <!--input type="radio" ng-model="pairImp" value="impair">Impairs<br-->
     </div>
 </div>

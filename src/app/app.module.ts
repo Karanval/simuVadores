@@ -12,6 +12,7 @@ import { ElevatorComponent } from './simulation/elevator/elevator.component';
 import { SimuConfigComponent } from './simulation/simu-config/simu-config.component';
 import { BuildingConfigurationComponent } from './simulation/building-configuration/building-configuration.component';
 import { TrafficPaternsComponent } from './simulation/traffic-paterns/traffic-paterns.component';
+import { SimulationResultsComponent } from './simulation/simulation-results/simulation-results.component';
 
 
 
@@ -24,7 +25,8 @@ import { TrafficPaternsComponent } from './simulation/traffic-paterns/traffic-pa
     ElevatorComponent,
     SimuConfigComponent,
     BuildingConfigurationComponent,
-    TrafficPaternsComponent
+    TrafficPaternsComponent,
+    SimulationResultsComponent
   ],
   imports: [
     BrowserModule,
