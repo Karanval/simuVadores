@@ -3,10 +3,11 @@ import { ResultController } from "../controllers/result.controller";
 import { TraficController } from "../controllers/trafic.controller";
 import { Elevator } from "../models/elevator";
 import { ValuesGenerator } from "../generators/values.generator";
-import { ElevatorSystem } from "../models/elevator.system";
+import { ElevatorSystemTaxi } from "../models/elevator.system.taxi";
 import { ElevatorController } from "../controllers/elevator.controller";
 import { Passenger } from "../models/passenger";
 import { ArrayType } from "@angular/compiler/src/output/output_ast";
+import { DatosPasajero } from '../generators/values.datos-pasajero';
 
 export class SimulationEngine {
 
@@ -21,7 +22,7 @@ export class SimulationEngine {
     private traficController: TraficController;
     private elevator: Elevator;
     private generator: ValuesGenerator;
-    private elevatorSistem: ElevatorSystem;
+    private elevatorSistem: ElevatorSystemTaxi;
     private elevatorController: ElevatorController;
 
     private passengers: Array<Passenger>;
@@ -41,14 +42,16 @@ export class SimulationEngine {
 
         this.traficController = new TraficController(this.resultController);
         this.elevator = new Elevator(630);
-        this.generator = new ValuesGenerator(4);
-        this.elevatorSistem = new ElevatorSystem(this.elevator, this.floors, this.traficController);
+        // entradas: floors lambda endTime
+        this.generator = new ValuesGenerator(4, 10, 100);
+        this.elevatorSistem = new ElevatorSystemTaxi(this.elevator, this.floors, this.traficController);
         this.elevatorController = new ElevatorController(this.elevatorSistem);
 
         this.passengers = new Array();
         let population = 15;
+        var datos: DatosPasajero[] = this.generator.getObjetosGenerados();
         for (let i = 0; i < population; i++) {
-            let passenger: Passenger = new Passenger(this.elevatorController, this.generator);
+            let passenger: Passenger = new Passenger(this.elevatorController, datos[i]);
             let passengerIndex = passenger.getCurrentFloor();
             this.floors[passengerIndex].addPassenger(passenger);
             this.passengers.push(passenger);
