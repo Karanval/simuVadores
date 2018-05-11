@@ -10,7 +10,7 @@ export class ResultController {
 
     public managePassengers(passengers: Array<Passenger>): void {
         passengers.forEach(element => this.transportedPassengers.push(element));
-        console.log(this.transportedPassengers);
+        //console.log(this.transportedPassengers);
     }
 
     public getTransportedPassengers(): Array<Passenger> {
