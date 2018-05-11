@@ -1,3 +1,5 @@
+import { DatosPasajero } from './values.datos-pasajero';
+
 export class ValuesGenerator {
 
     private floors: number;
@@ -17,13 +19,14 @@ export class ValuesGenerator {
     public getObjetosGenerados(): DatosPasajero[] {
       var res: DatosPasajero[] = [];
 
-      var llegadas: number[] = getArrivals();
+      var llegadas: number[] = this.getArrivals();
       var n = llegadas.length;
-      var pesos: number[] = calculateWeights(n);
+      var pesos: number[] = this.calculateWeights(n);
       for (var _i = 0; _i < n; _i++) {
-        var origen = getOrigen();
-        var datos = new DatosPasajero(llegadas[_i], pesos[_i],
-          origen, getDestino(origen));
+        var origen = this.getOrigen();
+        var llegada = llegadas[_i];
+        var peso = pesos[_i];
+        var datos = new DatosPasajero(llegada, peso, origen, this.getDestino(origen));
         res.push(datos);
       }
 
@@ -44,14 +47,14 @@ export class ValuesGenerator {
         return res;
     }
 
-    public calculateWeights(n: number): void {
+    public calculateWeights(n: number): number[] {
         // uses: http://statisticsblog.com/probability-distributions/
         //PD.rnorm(10) // Array of 10 standard normal variates
         //PD.rnorm(20, -2, 3) // Array of 20 normal variates with mean -2 and standard deviation 3
 
         // 67.9 kg average weight adult in SA,
         // source https://bmcpublichealth.biomedcentral.com/articles/10.1186/1471-2458-12-439
-        this.weights = this.PD.rnorm(n, 67.9, 8.95);
+      return this.PD.rnorm(n, 67.9, 8.95);
     }
 
     public getWeight(): number {
@@ -73,7 +76,7 @@ export class ValuesGenerator {
         let max = Math.floor(this.floors + 1);
         var res = Math.floor(Math.random() * (max - min)) + min;
         if(res == origen) {
-          res = getDestino(floor);
+          res = this.getDestino(origen);
         }
         return res;
     }
@@ -91,18 +94,4 @@ export class ValuesGenerator {
         }
         return res;
     }
-}
-
-export class DatosPasajero {
-  private tiempoLlegada: number;
-  private peso: number;
-  private pisoOrigen: number;
-  private pisoDestino: number;
-
-  constructor(tiempoLlegada, peso, pisoOrigen, pisoDestino) {
-      this.tiempoLlegada = tiempoLlegada;
-      this.peso = peso;
-      this.pisoOrigen = pisoOrigen;
-      this.pisoDestino = pisoDestino;
-  }
 }
