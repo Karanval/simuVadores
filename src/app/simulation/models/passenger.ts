@@ -3,10 +3,6 @@ import { DatosPasajero } from '../generators/values.datos-pasajero';
 
 export class Passenger {
 
-    private currentFloor: number;
-    private targetFloor: number;
-    private weight: number;
-
     private elevatorController: ElevatorController;
     private datos: DatosPasajero;
 
@@ -16,7 +12,11 @@ export class Passenger {
     }
 
     public run() {
-        this.elevatorController.callElevator(this.currentFloor);
+        this.elevatorController.callElevator(this.getCurrentFloor());
+    }
+
+    public runTarget() {
+        this.elevatorController.callElevator(this.getTargetFloor());
     }
 
     public getCurrentFloor(): number {

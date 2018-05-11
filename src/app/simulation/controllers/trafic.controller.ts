@@ -15,12 +15,12 @@ export class TraficController {
     public passPassengers(elevator: Elevator, floor: Floor): void {
         let currentFloor = floor.getFloorNumber();
         this.resultController.managePassengers(elevator.getPassengerTransported(currentFloor));
-
-        while (floor.getNumberOfPassengersWaiting() > 0) {
+        if (floor.getNumberOfPassengersWaiting() > 0) {
             let currentPassenger: Passenger = floor.removePassenger();
-            if (!elevator.addPassenger(currentPassenger)) {
+            if (elevator.addPassenger(currentPassenger)) {
+                currentPassenger.runTarget();
+            } else {
                 floor.addPassenger(currentPassenger);
-                currentPassenger.run();
             }
         }
     }

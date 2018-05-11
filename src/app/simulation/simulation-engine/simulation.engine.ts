@@ -3,7 +3,7 @@ import { ResultController } from "../controllers/result.controller";
 import { TraficController } from "../controllers/trafic.controller";
 import { Elevator } from "../models/elevator";
 import { ValuesGenerator } from "../generators/values.generator";
-import { ElevatorSystem } from "../models/elevator.system";
+import { ElevatorSystemTaxi } from "../models/elevator.system.taxi";
 import { ElevatorController } from "../controllers/elevator.controller";
 import { Passenger } from "../models/passenger";
 import { ArrayType } from "@angular/compiler/src/output/output_ast";
@@ -22,7 +22,7 @@ export class SimulationEngine {
     private traficController: TraficController;
     private elevator: Elevator;
     private generator: ValuesGenerator;
-    private elevatorSistem: ElevatorSystem;
+    private elevatorSistem: ElevatorSystemTaxi;
     private elevatorController: ElevatorController;
 
     private passengers: Array<Passenger>;
@@ -44,7 +44,7 @@ export class SimulationEngine {
         this.elevator = new Elevator(630);
         // entradas: floors lambda endTime
         this.generator = new ValuesGenerator(4, 10, 100);
-        this.elevatorSistem = new ElevatorSystem(this.elevator, this.floors, this.traficController);
+        this.elevatorSistem = new ElevatorSystemTaxi(this.elevator, this.floors, this.traficController);
         this.elevatorController = new ElevatorController(this.elevatorSistem);
 
         this.passengers = new Array();

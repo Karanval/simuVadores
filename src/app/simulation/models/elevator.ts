@@ -11,7 +11,6 @@ export class Elevator {
     }
 
     public addPassenger(passenger: Passenger): boolean {
-
         if ((this.getActualWeight() + passenger.getWeight() <= this.capacity)) {
             this.passengers.push(passenger);
             return true;

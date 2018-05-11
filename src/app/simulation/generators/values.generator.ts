@@ -59,6 +59,8 @@ export class ValuesGenerator {
 
     public getWeight(): number {
         //return this.weights[this.index++];
+        //console.log(this);
+        //this.calculateWeights(5);
         return 67.9;
     }
 
@@ -77,20 +79,6 @@ export class ValuesGenerator {
         var res = Math.floor(Math.random() * (max - min)) + min;
         if(res == origen) {
           res = this.getDestino(origen);
-        }
-        return res;
-    }
-
-    /** n =  how many numbers are required
-    / floors = ammount of floors in the building
-    / floor = current floor
-    / @returns an array of n random numbers, each from 0 to n
-    */
-    public getNFloors(n: number): number[] {
-        var res = [];
-        for (var _i = 0; _i < n; _i++) {
-            var num = this.getFloor();
-            res.push(num);
         }
         return res;
     }

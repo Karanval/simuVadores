@@ -4,12 +4,13 @@ import { Passenger } from './passenger';
 import { ValuesGenerator } from '../generators/values.generator';
 import { TraficController } from '../controllers/trafic.controller';
 
-export class ElevatorSystemBus {
+export class ElevatorSystemTaxi {
 
     private UP_VALUE: number = 1;
     private DOWN_VALUE: number = -1;
+    private WAITHING_VALUE: number = -1;
     private floors: Array<Floor>;
-    private targets: Array<number>;
+    private target: number;
     private currentFloor: number;
     private increment: number;
     private traficController: TraficController;
@@ -19,17 +20,13 @@ export class ElevatorSystemBus {
         this.traficController = traficController;
         this.currentFloor = 0; //hardcode
         this.increment = this.UP_VALUE;//hardcode
-        this.targets = new Array();
         this.floors[0].setElevator(elevator);
     }
 
     public setTargetFloor(numberFloor: number) {
         console.log("_________________________");
         console.log(this.currentFloor + " => " + numberFloor);
-        if (this.targets.indexOf(numberFloor) == -1) {
-            this.targets.push(numberFloor);
-            this.targets.sort((first, second) => { return first - second }); //ordenamos de menor a mayor
-        }
+        this.target = numberFloor;
         this.moveElevator();
     }
 
@@ -39,34 +36,36 @@ export class ElevatorSystemBus {
         this.currentFloor = this.currentFloor + this.increment;
         let floor: Floor = this.floors[this.currentFloor];
         floor.setElevator(elevator);
-        this.removeCurrentFloorOfTargets(floor.getFloorNumber());
         this.notifyPassengers(elevator, floor);
-        if (this.targets.length > 0) {
+        this.updateTarget();
+        if (this.target != this.WAITHING_VALUE) {
             this.moveElevator();
         }
     }
 
     public notifyPassengers(elevator: Elevator, floor: Floor) {
         console.log(floor.getFloorNumber() + " => ");
-        this.traficController.passPassengers(elevator, floor)
+        if (this.target == this.currentFloor) {
+            this.traficController.passPassengers(elevator, floor);
+        }
+    }
+
+    private validateElevatorDirection(): void {
+        if (!this.isValidFloor(this.currentFloor + this.increment)
+            || !this.isDirectionOfTheTarget()) {
+            this.changeElevatorDirection();
+        }
     }
 
     private isValidFloor(floor: number): boolean {
         return floor != -1 && floor < this.floors.length;
     }
 
-    private validateElevatorDirection(): void {
-        if (!this.isValidFloor(this.currentFloor + this.increment)
-            || this.isLastTargetInADirection()) {
-            this.changeElevatorDirection();
-        }
-    }
-
-    private isLastTargetInADirection(): boolean {
-        let value = this.currentFloor + this.increment;
-        let lastDown = value < this.targets[0] && this.increment == this.DOWN_VALUE;
-        let lastUp = value > this.targets[this.targets.length - 1] && this.increment == this.UP_VALUE;
-        return lastDown || lastUp;
+    private isDirectionOfTheTarget(): boolean {
+        let sameFloor = (this.currentFloor + this.increment) == this.currentFloor;
+        let lastUp = this.currentFloor < this.target && this.increment == this.UP_VALUE;
+        let lastDown = this.currentFloor > this.target && this.increment == this.DOWN_VALUE;
+        return sameFloor || lastDown || lastUp;
     }
 
     private changeElevatorDirection(): void {
@@ -77,10 +76,9 @@ export class ElevatorSystemBus {
         }
     }
 
-    private removeCurrentFloorOfTargets(floorNumber: number): void {
-        let index = this.targets.indexOf(floorNumber);
-        if (index != -1) {
-            this.targets.splice(index, 1);
+    private updateTarget() {
+        if (this.target == this.currentFloor) {
+            this.target = this.WAITHING_VALUE;
         }
     }
 }

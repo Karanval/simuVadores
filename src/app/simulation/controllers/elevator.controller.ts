@@ -1,15 +1,15 @@
-import { ElevatorSystem } from "../models/elevator.system";
+import { ElevatorSystemTaxi } from "../models/elevator.system.taxi";
 
 export class ElevatorController {
 
-    private elevatorSystem: ElevatorSystem;
+    private elevatorSystemTaxi: ElevatorSystemTaxi;
 
-    constructor(elevatorSystem: ElevatorSystem) {
-        this.elevatorSystem = elevatorSystem;
+    constructor(elevatorSystem: ElevatorSystemTaxi) {
+        this.elevatorSystemTaxi = elevatorSystem;
     }
 
     public callElevator(targetFloor: number) {
         console.log(targetFloor);
-        this.elevatorSystem.setTargetFloor(targetFloor);
+        this.elevatorSystemTaxi.setTargetFloor(targetFloor);
     }
 }
