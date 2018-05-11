@@ -9,7 +9,7 @@ export class ValuesGenerator {
         this.floors = floors;
         this.index = 0;
     }
-    
+
 
     // lambda es la cantidad esperada de llegadas de personas en ese tiempo dado
     // endTime es por cuanto tiempo se tiene que correr la generación de
@@ -40,23 +40,43 @@ export class ValuesGenerator {
         return 67.9;
     }
 
-    //returns a number between 1 and floors
-    public getFloor(): number {
+    /**
+    / Devuelve un origen y un destino
+    */
+    public obtenerOrigenYDestino(floor: number): number[] {
+      var res = [];
+      var ori = getFloor(floor);
+      var dest = getFloor(floor);
+      if(ori != desr) {
+        res.push(ori);
+        res.push(dest);
+      } else {
+        dest = getFloor(floor);
+      }
+      return res;
+    }
+
+    //returns a number between 1 and floor
+    public getFloor(floor: number): number {
         let min = Math.ceil(0);
         let max = Math.floor(this.floors + 1);
-        return Math.floor(Math.random() * (max - min)) + min;
+        var res = Math.floor(Math.random() * (max - min)) + min;
+        if(res == floor) {
+          res = getFloor(floor);
+        }
+        return res;
     }
 
     /** n =  how many numbers are required
     / floors = ammount of floors in the building
     / floor = current floor
+    / @returns an array of n random numbers, each from 0 to n
     */
-    public getNFloors(n: number, floor: number): number[] {
+    public getNFloors(n: number): number[] {
         var res = [];
         for (var _i = 0; _i < n; _i++) {
             var num = this.getFloor();
-            if (num == floor) { _i = _i - 1; }
-            else { res.push(num); }
+            res.push(num);
         }
         return res;
     }
