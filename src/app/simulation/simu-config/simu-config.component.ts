@@ -6,7 +6,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./simu-config.component.css']
 })
 export class SimuConfigComponent implements OnInit {
-
+  secciones: boolean ;
+  pairImpair: boolean;
   constructor() { }
 
   ngOnInit() {

@@ -6,8 +6,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./elevator.component.css']
 })
 export class ElevatorComponent implements OnInit {
-  secciones: boolean ;
-  pairImpair: boolean;
+  
   constructor() { }
 
   ngOnInit() {

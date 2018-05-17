@@ -1,19 +1,20 @@
 <form>
-    <!--cambiar por el nombre que corresponde-->
-    <app-building-configuration></app-building-configuration>
-    <!--cambiar por el nombre que corresponde-->
-    <app-traffic-paterns></app-traffic-paterns>
 
-    <div class=" card borde-primary mb-15" style="max-width: 17cm">
-        <div class=" card borde-deep-orange" style="max-width: 17cm">
-            <div class="panel panel-black">
-                <h4 class="card-header primary-color white-text">Elevadores</h4>
-            </div>
-            <div class="panel panel-deep-orange">
-            </div>
+    <div class="card border-primary mb-15 text-right" >
+        <h4 class="card-header primary-color white-text">Iniciar nueva imulación</h4>
+        <div class="card-body">
+        <app-building-configuration></app-building-configuration>
+        <app-traffic-paterns></app-traffic-paterns>
+
+        <div class="card-block mb-3" >
+            <div class="card-header #cfd8dc blue-grey lighten-4">Elevadores</div>
+            <!--h5 class="card-title">Dark card title</h5-->
             <!--falta repetir de acuerdo al numero de veces mencionado en las anteriores config-->
             <app-elevator></app-elevator>
         </div>
+        <div class="card text-right">
+            <a href="#" class="btn btn-primary">Empezar</a>
+        </div>
+        </div>
     </div>
-  <input class="btn btn-orange" type="submit" value="Empezar">
 </form>
