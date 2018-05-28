@@ -1,4 +1,4 @@
-<form>
+<form (ngSubmit)="onSubmit()" #simuConfig="ngForm">
 
     <div class="card border-primary mb-15 text-right" >
         <h4 class="card-header primary-color white-text">Iniciar nueva imulación</h4>
@@ -13,8 +13,7 @@
             <app-elevator></app-elevator>
         </div>
         <div class="card text-right">
-            <a href="#" class="btn btn-primary">Empezar</a>
-        </div>
+            <input type="submit" class="btn btn-primary" value="Empezar">
         </div>
     </div>
-</form>
+<p id="demo"></p>
