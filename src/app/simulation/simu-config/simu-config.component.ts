@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
+import { SimulationEngine } from '../simulation-engine/simulation.engine';
 
 @Component({
   selector: 'app-simu-config',
@@ -6,11 +7,16 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./simu-config.component.css']
 })
 export class SimuConfigComponent implements OnInit {
+
+  @Input()
+  private simulationEngine: SimulationEngine;
+
   submitted = false;
 
-  capacidad: number;
-  pisos: number;
-  ascensores: number;
+  capacidad: number = 5;
+  pisos: number = 5;
+  ascensores: number = 1;
+  poblacion: number = 15;
 
   uppeak: boolean;
   uppeak_inicio: string;
@@ -70,4 +76,10 @@ export class SimuConfigComponent implements OnInit {
   ngOnInit() {
   }
 
+  run() {
+    this.simulationEngine.build(this.capacidad, this.pisos, this.poblacion);
+    this.simulationEngine.start();
+    this.simulationEngine.run();
+    //this.simulationEngine.shutDown();
+  }
 }

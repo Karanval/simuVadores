@@ -10,11 +10,7 @@ import { DatosPasajero } from '../generators/values.datos-pasajero';
 
 export class SimulationEngine {
 
-    private floor0: Floor;
-    private floor1: Floor;
-    private floor2: Floor;
-    private floor3: Floor;
-    private floor4: Floor;
+    private population: number;
     private floors: Array<Floor>;
 
     private resultController: ResultController;
@@ -29,25 +25,25 @@ export class SimulationEngine {
         this.resultController = resultController;
     }
 
+    public build(capacidad, pisos, poblacion) {
+        this.floors = new Array();
+        for(let i = 0; i < pisos; i++){
+            let current: Floor = new Floor(i);
+            this.floors.push(current);
+        }
+        this.elevator = new Elevator(capacidad * 80);
+        this.population = poblacion;
+    }
+
     public start() {
-        this.floor0 = new Floor(0);
-        this.floor1 = new Floor(1);
-        this.floor2 = new Floor(2);
-        this.floor3 = new Floor(3);
-        this.floor4 = new Floor(4);
-
-        this.floors = [this.floor0, this.floor1, this.floor2, this.floor3, this.floor4];
-
-        this.elevator = new Elevator(630);
         // entradas: floors lambda endTime
         this.generator = new ValuesGenerator(4, 10, 100);
         this.elevatorSystem = new ElevatorSystemTaxi(this.elevator, this.floors, this.resultController);
         this.elevatorController = new ElevatorController(this.elevatorSystem);
 
         this.passengers = new Array();
-        let population = 5;
         var datos: DatosPasajero[] = this.generator.getObjetosGenerados();
-        for (let i = 0; i < population; i++) {
+        for (let i = 0; i < this.population; i++) {
             let passenger: Passenger = new Passenger(this.elevatorController, datos[i]);
             let passengerIndex = passenger.getCurrentFloor();
             this.floors[passengerIndex].addPassenger(passenger);
@@ -64,12 +60,6 @@ export class SimulationEngine {
     }
 
     public shutDown() {
-        this.floor0 = undefined;
-        this.floor1 = undefined;
-        this.floor2 = undefined;
-        this.floor3 = undefined;
-        this.floor4 = undefined;
-
         this.floors = undefined;
 
         this.resultController = undefined;
