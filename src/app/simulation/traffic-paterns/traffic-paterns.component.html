@@ -1,56 +1,40 @@
-<!DOCTYPE html>
-<!--panel-->
 
+<div class=" card-block mb-15">
+    <div class="card-header #cfd8dc blue-grey lighten-4">Patrones de tráfico</div>
 
-<div class=" card borde-primary mb-15" style="max-width: 17cm">
-    <div class=" card borde-deep-orange" style="max-width: 17cm">
-        <div class="panel panel-black">
-            <h4 class="card-header primary-color white-text">PATRONES DE TRAFICO</h4>
-        </div>
-        <div class="panel panel-deep-orange">
-        </div>
-    </div>
-
-
-
-
-
-    <label><input type="checkbox" id="cbox1" value="first_checkbox">&#x2003;<label for="cbox1">uppeak</label> &#x2003;&#x2003;&#x2003;inicio
-    <label><input type="time" name="hora"></label> &#x2003;&#x2002;fin
-    <label><input type="time" name="hora"> </label> &#x2003;cantidad de personas aceptadas
-    <label>   
-    <input type="number" name="num" min="0" max="50"></label>
+    <label><input type="checkbox" id="uppeak" [(ngModel)]="uppeak" value="first_checkbox">
+        &#x2003;<label for="uppeak">uppeak</label> 
+    <label><input type="time"  [(ngModel)]="uppeak_inicio" >Inicio</label> 
+    <label><input type="time" [(ngModel)]="uppeak_fin">Fin</label> 
+    <label><input type="number" min="0" max="50" [(ngModel)]="uppeak_cant">
+        Cantidad de personas aceptadas</label>
     <br>
 
 
 
-    <input type="checkbox" id="cbox2" value="second_checkbox">&#x2003;<label for="cbox2">downpeak</label> &#x2003;&#x2004;inicio
-    <label><input type="time" name="hora"></label> &#x2003;&#x2002;fin
-    <label><input type="time" name="hora"></label> &emsp;cantidad de personas aceptadas
-    <label>
-    <input type="number" name="num" min="0" max="50"></label>
+    <input type="checkbox" id="downpeak" [(ngModel)]="downpeak" value="second_checkbox">
+        &#x2003;<label for="downpeak">downpeak</label>
+    <label><input type="time" [(ngModel)]="downpeak_inicio" >Inicio</label> 
+    <label><input type="time" [(ngModel)]="downpeak_fin">Fin</label> 
+    <label><input type="number" min="0" max="50" [(ngModel)]="downpeak_cant">
+        Cantidad de personas aceptadas</label>
     <br>
 
 
-    <label><input type="checkbox" id="cbox3" value="third_checkbox">&#x2003;<label for="cbox3">lunchpeak</label> &#x2003;&#x2004;inicio
-    <label><input type="time" name="hora"></label> &#x2003;&#x2002;fin
-    <label> <input type="time" name="hora"> </label> &#x2003;cantidad de personas aceptadas
-    <label>
-     <input type="number" name="num" min="0" max="50"></label>
+    <label><input type="checkbox" id="lunchpeak" [(ngModel)]="lunchpeak" value="third_checkbox">
+        &#x2003;<label for="lunchpeak">lunchpeak</label>
+    <label><input type="time" [(ngModel)]="lunchpeak_inicio" >Inicio</label> 
+    <label><input type="time" [(ngModel)]="lunchpeak_fin">Fin</label> 
+    <label><input type="number" min="0" max="50" [(ngModel)]="lunchpeak_cant">
+        Cantidad de personas aceptadas</label>
     <br>
 
 
-    <input type="checkbox" id="cbox4" value="fourth_checkbox">&#x2003;<label for="cbox4">interfloor</label> &#x2003;&#x2003;inicio
-    <label><input type="time" name="hora"> </label> &#x2003;&#x2002;fin
-    <label> <input type="time" name="hora">  </label> &#x2003;cantidad de personas aceptadas
-    <label>
-     <input type="number" name="num" min="0" max="50"> </label>
+    <input type="checkbox" id="interfloor" [(ngModel)]="interfloor" value="fourth_checkbox">
+        &#x2003;<label for="interfloor">interfloor</label>
+    <label><input type="time" [(ngModel)]="interfloor_inicio" >Inicio</label> 
+    <label><input type="time" [(ngModel)]="interfloor_fin">Fin</label> 
+    <label><input type="number"  min="0" max="50" [(ngModel)]="interfloor_cant">
+        Cantidad de personas aceptadas</label>
     <br>
 
-
-
-
-
-
-
-   

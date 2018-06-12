@@ -1,0 +1,19 @@
+<form (ngSubmit)="onSubmit()" #simuConfig="ngForm">
+
+    <div class="card border-primary mb-15 text-right" >
+        <h4 class="card-header primary-color white-text">Iniciar nueva imulación</h4>
+        <div class="card-body">
+        <app-building-configuration></app-building-configuration>
+        <app-traffic-paterns></app-traffic-paterns>
+
+        <div class="card-block mb-3" >
+            <div class="card-header #cfd8dc blue-grey lighten-4">Elevadores</div>
+            <!--h5 class="card-title">Dark card title</h5-->
+            <!--falta repetir de acuerdo al numero de veces mencionado en las anteriores config-->
+            <app-elevator></app-elevator>
+        </div>
+        <div class="card text-right">
+            <input type="submit" class="btn btn-primary" value="Empezar">
+        </div>
+    </div>
+<p id="demo"></p>
