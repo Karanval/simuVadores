@@ -1,0 +1,32 @@
+<div class="list-group-flush border-0">
+  <li  class="list-group-item border-0">
+    <input class="card-text" name="behaviour101" type="radio" id="radio101" 
+      [(ngModel)]="taxi" value="taxi">
+      <label for="radio101">Taxi</label><br>
+    <input class="card-text" name="behaviour101" type="radio" id="radio102" 
+      [(ngModel)]="bus" value="bus">
+      <label for="radio102">Bus</label>
+  </li>
+  <li class="list-group-item border-bottom">
+      <input name="behaviour102" type="radio" id="radio103" value="secciones"
+          [(ngModel)]="secciones">
+      <label for="radio103">Secciones</label><br>
+      <div *ngIf="secciones" class="flex-row">
+        <label>First floor: <input type="number" [(ngModel)]="secIni"></label>
+        <label>Last floor: <input type="number" [(ngModel)]="secFin"></label>
+      </div>
+
+      <input name="behaviour102" type="radio" id="radio104"value="pairs-impairs"
+            [(ngModel)]="parImpar">
+      <label for="radio104">Pairs/Impairs</label>
+      <div *ngIf="pairImpair" class="flex-row">
+        <input name="pairs101" type="radio" id="radio105" [(ngModel)]="par"
+              value="par">
+          <label for="radio105">Pairs</label>
+        <input name="pairs101" type="radio" id="radio106" [(ngModel)]="impar"
+              value="impar">
+          <label for="radio106">Impairs</label>
+      </div>
+
+    </li>
+</div>
