@@ -1,6 +1,5 @@
 import { Floor } from "../models/floor";
 import { ResultController } from "../controllers/result.controller";
-import { TraficController } from "../controllers/trafic.controller";
 import { Elevator } from "../models/elevator";
 import { ValuesGenerator } from "../generators/values.generator";
 import { ElevatorSystemTaxi } from "../models/elevator.system.taxi";
@@ -19,10 +18,9 @@ export class SimulationEngine {
     private floors: Array<Floor>;
 
     private resultController: ResultController;
-    private traficController: TraficController;
     private elevator: Elevator;
     private generator: ValuesGenerator;
-    private elevatorSistem: ElevatorSystemTaxi;
+    private elevatorSystem: ElevatorSystemTaxi;
     private elevatorController: ElevatorController;
 
     private passengers: Array<Passenger>;
@@ -40,15 +38,14 @@ export class SimulationEngine {
 
         this.floors = [this.floor0, this.floor1, this.floor2, this.floor3, this.floor4];
 
-        this.traficController = new TraficController(this.resultController);
         this.elevator = new Elevator(630);
         // entradas: floors lambda endTime
         this.generator = new ValuesGenerator(4, 10, 100);
-        this.elevatorSistem = new ElevatorSystemTaxi(this.elevator, this.floors, this.traficController);
-        this.elevatorController = new ElevatorController(this.elevatorSistem);
+        this.elevatorSystem = new ElevatorSystemTaxi(this.elevator, this.floors, this.resultController);
+        this.elevatorController = new ElevatorController(this.elevatorSystem);
 
         this.passengers = new Array();
-        let population = 15;
+        let population = 5;
         var datos: DatosPasajero[] = this.generator.getObjetosGenerados();
         for (let i = 0; i < population; i++) {
             let passenger: Passenger = new Passenger(this.elevatorController, datos[i]);
@@ -76,10 +73,9 @@ export class SimulationEngine {
         this.floors = undefined;
 
         this.resultController = undefined;
-        this.traficController = undefined;
         this.elevator = undefined;
         this.generator = undefined;
-        this.elevatorSistem = undefined;
+        this.elevatorSystem = undefined;
         this.elevatorController = undefined;
     }
 }

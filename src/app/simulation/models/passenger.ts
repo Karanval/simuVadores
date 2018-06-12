@@ -31,4 +31,8 @@ export class Passenger {
         return this.datos.getPeso();
     }
 
+    public getTime(): number {
+        return this.datos.getTiempoLlegada();
+    }
+
 }

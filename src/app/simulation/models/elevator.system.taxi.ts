@@ -2,7 +2,8 @@ import { Elevator } from './elevator';
 import { Floor } from './floor';
 import { Passenger } from './passenger';
 import { ValuesGenerator } from '../generators/values.generator';
-import { TraficController } from '../controllers/trafic.controller';
+import { ResultController } from '../controllers/result.controller';
+import { TaxiTrafficController } from '../controllers/taxi.traffic.controller';
 
 export class ElevatorSystemTaxi {
 
@@ -10,33 +11,40 @@ export class ElevatorSystemTaxi {
     private DOWN_VALUE: number = -1;
     private WAITHING_VALUE: number = -1;
     private floors: Array<Floor>;
+    private elevator: Elevator;
     private target: number;
     private currentFloor: number;
     private increment: number;
-    private traficController: TraficController;
+    private taxiTrafficController: TaxiTrafficController;
 
-    constructor(elevator: Elevator, floors: Array<Floor>, traficController: TraficController) {
+    constructor(elevator: Elevator, floors: Array<Floor>, resultController: ResultController) {
         this.floors = floors;
-        this.traficController = traficController;
+        this.elevator = elevator;
+        this.taxiTrafficController = new TaxiTrafficController(resultController);
         this.currentFloor = 0; //hardcode
         this.increment = this.UP_VALUE;//hardcode
-        this.floors[0].setElevator(elevator);
+        this.floors[this.currentFloor].setElevator(elevator);
     }
 
-    public setTargetFloor(numberFloor: number) {
+    public setTargetFloor(targetFloor: number) {
         console.log("_________________________");
-        console.log(this.currentFloor + " => " + numberFloor);
-        this.target = numberFloor;
-        this.moveElevator();
+        console.log(this.currentFloor + " => " + targetFloor);
+        this.target = targetFloor;
+        if(this.currentFloor == this.target) {
+            this.notifyPassengers(this.elevator, this.floors[this.currentFloor]);
+            this.updateTarget();
+        } else {
+            this.moveElevator();
+        }
     }
 
     public moveElevator() {
         this.validateElevatorDirection();
-        let elevator: Elevator = this.floors[this.currentFloor].removeElevator();
+        this.elevator = this.floors[this.currentFloor].removeElevator(this.elevator);
         this.currentFloor = this.currentFloor + this.increment;
         let floor: Floor = this.floors[this.currentFloor];
-        floor.setElevator(elevator);
-        this.notifyPassengers(elevator, floor);
+        floor.setElevator(this.elevator);
+        this.notifyPassengers(this.elevator, floor);
         this.updateTarget();
         if (this.target != this.WAITHING_VALUE) {
             this.moveElevator();
@@ -46,7 +54,7 @@ export class ElevatorSystemTaxi {
     public notifyPassengers(elevator: Elevator, floor: Floor) {
         console.log(floor.getFloorNumber() + " => ");
         if (this.target == this.currentFloor) {
-            this.traficController.passPassengers(elevator, floor);
+            this.taxiTrafficController.passPassengers(elevator, floor);
         }
     }
 
@@ -62,10 +70,9 @@ export class ElevatorSystemTaxi {
     }
 
     private isDirectionOfTheTarget(): boolean {
-        let sameFloor = (this.currentFloor + this.increment) == this.currentFloor;
         let lastUp = this.currentFloor < this.target && this.increment == this.UP_VALUE;
         let lastDown = this.currentFloor > this.target && this.increment == this.DOWN_VALUE;
-        return sameFloor || lastDown || lastUp;
+        return lastDown || lastUp;
     }
 
     private changeElevatorDirection(): void {

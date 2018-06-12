@@ -3,7 +3,7 @@ import { Floor } from "../models/floor";
 import { Passenger } from "../models/passenger";
 import { ResultController } from "./result.controller";
 
-export class TraficController {
+export class TaxiTrafficController {
 
     private resultController: ResultController;
     private paseengersToIn: Array<Passenger> = new Array();
