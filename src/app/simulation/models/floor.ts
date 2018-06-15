@@ -4,11 +4,13 @@ import { Passenger } from './passenger';
 export class Floor {
 
     private floorNumber: number;
-    private elevator: Elevator;
-    private passengers: Array<Passenger> = [];
+    private elevators: Array<Elevator>;
+    private passengers: Array<Passenger>;
 
     constructor(floorNumber: number) {
         this.floorNumber = floorNumber;
+        this.elevators = new Array();
+        this.passengers = new Array();
     }
 
     public getFloorNumber(): number {
@@ -28,12 +30,12 @@ export class Floor {
     }
 
     public setElevator(elevator: Elevator) {
-        this.elevator = elevator;
+        this.elevators.push(elevator);
     }
 
-    public removeElevator(): Elevator {
-        let current = this.elevator;
-        this.elevator = undefined;
+    public removeElevator(elevator: Elevator): Elevator {
+        let index = this.elevators.indexOf(elevator);
+        let current = this.elevators.splice(index, 1)[0];
         return current;
     }
     

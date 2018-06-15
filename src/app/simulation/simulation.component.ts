@@ -18,9 +18,9 @@ export class SimulationComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.simulationEngine.start();
-    this.simulationEngine.run();
-    this.simulationEngine.shutDown();
+    // this.simulationEngine.start();
+    // this.simulationEngine.run();
+    // this.simulationEngine.shutDown();
   }
 
 }

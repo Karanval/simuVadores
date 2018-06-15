@@ -2,9 +2,10 @@
   <thead class="thead-inverse">
     <tr>
       <th>#</th>
-      <th>Origin Floor</th>
-      <th>Target Floor</th>
-      <th>Passenger Weight</th>
+      <th>Piso origen</th>
+      <th>Piso destino</th>
+      <th>peso del pasajero</th>
+      <th>hora de llegada del pasajero</th>
     </tr>
   </thead>
   <tbody>
@@ -13,6 +14,14 @@
       <td>{{passenger.getCurrentFloor()}}</td>
       <td>{{passenger.getTargetFloor()}}</td>
       <td>{{passenger.getWeight()}}</td>
+      <td>{{passenger.getTime()}}</td>
+    </tr>
+    <tr>
+      <td><strong>Total</strong></td>
+      <td></td>
+      <td></td>
+      <td>{{pesoPromedio}}</td>
+      <td>{{tiempoPromedio}}</td>
     </tr>
   </tbody>
 </table>
