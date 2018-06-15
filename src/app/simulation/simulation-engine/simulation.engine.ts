@@ -56,7 +56,8 @@ export class SimulationEngine {
     public run() {
         this.passengers.forEach(element => {
             element.run();
-        })
+        });
+        this.resultController.refresh();
     }
 
     public shutDown() {

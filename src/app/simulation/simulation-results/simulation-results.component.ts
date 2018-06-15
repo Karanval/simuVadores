@@ -11,6 +11,12 @@ export class SimulationResultsComponent implements OnInit {
   @Input()
   private transportedPassengers: Array<Passenger>;
 
+  @Input()
+  private pesoPromedio: number;
+
+  @Input()
+  private tiempoPromedio: number;
+
   constructor() { }
 
   ngOnInit() {
