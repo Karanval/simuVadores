@@ -21,6 +21,10 @@ export class ResultController {
         return this.transportedPassengers;
     }
 
+    public ponderarTiempo(n: number): number { // 720 min
+        return n*720;
+    }
+
     public refresh() {
         let pesoAcomulado = 0;
         let tiempoAcomulado = 0;
@@ -28,7 +32,7 @@ export class ResultController {
         this.transportedPassengers.forEach(
             current => {
                 pesoAcomulado += current.getWeight();
-                tiempoAcomulado += current.getTime();
+                tiempoAcomulado += this.ponderarTiempo(current.getTime());
             }
         );
 

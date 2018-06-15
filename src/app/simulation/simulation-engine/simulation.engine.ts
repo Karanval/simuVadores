@@ -12,6 +12,7 @@ export class SimulationEngine {
 
     private population: number;
     private floors: Array<Floor>;
+    private time: number = 720; // total de minutos en 12 horas
 
     private resultController: ResultController;
     private elevator: Elevator;
@@ -37,7 +38,7 @@ export class SimulationEngine {
 
     public start() {
         // entradas: floors lambda endTime
-        this.generator = new ValuesGenerator(4, 10, 100);
+        this.generator = new ValuesGenerator(this.floors.length - 1, this.population, this.time);
         this.elevatorSystem = new ElevatorSystemTaxi(this.elevator, this.floors, this.resultController);
         this.elevatorController = new ElevatorController(this.elevatorSystem);
 

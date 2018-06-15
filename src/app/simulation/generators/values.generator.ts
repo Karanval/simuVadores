@@ -37,14 +37,48 @@ export class ValuesGenerator {
     // endTime es por cuanto tiempo se tiene que correr la generación de
     // variables en ms
     public getArrivals(): number[] {
-        var time: number = 0.0;
+        /*var time: number = 0.0;
         var res = [];
         while (time <= this.endTime) {
-            var dt = -Math.log(1 - Math.random()) / this.lambda;
+            //yi=(-log(1-ui)) / lambda
+            var dt = (-Math.log(1 - Math.random()) )/ this.lambda;
+            
             time = time + dt;
             res.push(time);
         }
-        return res;
+        return res;*/
+        var ret = [];
+        var acum = 0;
+        for (var i=1; i<=this.lambda; i++) {
+            acum=acum+this.dpois(i, this.lambda);
+            ret.push(acum);
+        }
+        return ret;
+        //return this.PD.rpois(this.lambda, 7);
+    }
+
+    // took from library probability-distributions
+    dpois (x, lambda): number {
+
+        // Check for degeneracy
+        if(lambda === 0) {
+            if(x === 0) return 1;
+            return 0
+        }
+
+        var a = Math.pow(lambda, x);
+        var b = Math.exp(-lambda);
+        var c = this._factorial(x);
+
+        return a*b/c
+    }
+
+    _factorial(n): number {
+        var toReturn=1;
+        for (var i = 2; i <= n; i++)
+            toReturn = toReturn * i;
+
+        return toReturn;
     }
 
     public calculateWeights(n: number): number[] {

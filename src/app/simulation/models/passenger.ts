@@ -32,7 +32,17 @@ export class Passenger {
     }
 
     public getTime(): number {
-        return this.datos.getTiempoLlegada();
+        console.log("tl: "+this.datos.getTiempoLlegada()+"  "+(this.datos.getTiempoLlegada()*720));
+        return this.datos.getTiempoLlegada()*720;
+    }
+
+    public getTimeHr(): string {
+        var time = this.getTime();
+        var hora = Math.floor(time/60)+8;//starts at 8
+        var min = Math.floor(time%60);
+        if(min<10) 
+            return ""+hora+":0"+min;
+        return ""+hora+":"+min;
     }
 
 }
